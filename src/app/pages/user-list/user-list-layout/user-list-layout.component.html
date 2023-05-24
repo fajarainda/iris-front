@@ -1,0 +1,94 @@
+<div class="w-screen h-screen bg-black p-8">
+    <div class="flex flex-col space-y-8 bg-soft-black p-8 rounded-lg">
+        <!-- form field -->
+        <form [formGroup]="createUserForm" (ngSubmit)="submitEvent()" autocomplete="off">
+            <div class="flex flex-col bg-light-black p-8 rounded-lg">
+                <p class="text-lg font-bold text-dark-white mb-4">Add New User</p>
+                <div class="flex w-full space-x-4 place-items-end">
+                    <div class="flex flex-col w-1/4">
+                        <label 
+                            for="name" 
+                            class="block mb-2 text-dark-white text-sm font-medium">
+                            Name
+                        </label>
+                        <!-- ngClass untuk variabel yang berubah -->
+                        <input 
+                            type="text"
+                            id="name"
+                            formControlName="name"
+                            placeholder="Input name here"
+                            [ngClass]="createUserForm.get('name')?.errors ? 'outline-none' : 'outline-success'"
+                            class="block w-full p-3 text-sm text-white bg-soft-black rounded-lg outline-none focus:outline-primary placeholder-dark-gray">
+                    </div>
+                    
+                    <div class="flex flex-col w-1/4">
+                        <label 
+                            for="role" 
+                            class="block mb-2 text-dark-white text-sm font-medium">
+                            Role
+                        </label>
+                        <input 
+                            type="text"
+                            id="role"
+                            formControlName="role"
+                            placeholder="Choose user role"
+                            [ngClass]="createUserForm.get('role')?.errors ? 'outline-none' : 'outline-success'"
+                            class="block w-full p-3 text-sm text-white bg-soft-black rounded-lg outline-none focus:outline-primary placeholder-dark-gray">
+                    </div>
+                    
+                    <div class="flex flex-col w-1/4">
+                        <label 
+                            for="salary" 
+                            class="block mb-2 text-dark-white text-sm font-medium">
+                            Salary
+                        </label>
+                        <input 
+                            type="text"
+                            id="salary"
+                            formControlName="salary"
+                            placeholder="Input salary here"
+                            [ngClass]="createUserForm.get('salary')?.errors ? 'outline-none' : 'outline-success'"
+                            class="block w-full p-3 text-sm text-white bg-soft-black rounded-lg outline-none focus:outline-primary placeholder-dark-gray">
+                    </div>
+
+                    <button 
+                        type="submit" 
+                        class="p-2.5 w-1/4 h-1/2 rounded-lg text-white bg-primary opacity-80 hover:opacity-100">
+                        Add New
+                    </button>
+                    
+                </div>
+    
+            </div>
+        </form>
+        <!-- Tabel -->
+        <table class="w-full">
+            <thead class="text-left text-white text-bold">
+                <tr>
+                    <th class="px-6 py-3">ID</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Salary</th>
+                    <th>Created</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <!-- Isi Tabel -->
+            <tbody >
+                <tr *ngFor="let user of userList" class="border-b border-light-black text-dark-white hover:bg-light-black">
+                    <td class="px-6 py-3">{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.role}}</td>
+                    <td>{{user.salary}}</td>
+                    <td>{{user.createdAt}}</td>
+                    <td>
+                        <p class="border rounded-full w-fit text-xs px-4 py-2 text-center" [ngClass]="user.active === true?
+                        'border-success text-success':'border-error text-error' ">
+                        {{user.active === true ? 'active' : 'not active'}}
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

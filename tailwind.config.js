@@ -10,7 +10,7 @@ module.exports = {
         'soft-secondary' : '#75ED28',
         'error' : '#E6194D',
         'soft-error' : '#EB4770',
-        'succes' : '#62D862',
+        'success' : '#62D862',
         'soft-succes' : '#8BE28B',
         'white' : '#FFFFFF',
         'dark-white' : '#F5F5F5',
